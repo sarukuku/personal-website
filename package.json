@@ -12,10 +12,14 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.2.5",
+    "es6-promise": "^4.1.0",
+    "isomorphic-fetch": "^2.2.1",
     "next": "beta",
     "particles.js": "^2.0.0",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-typist": "^1.1.0"
+    "react-typist": "^1.1.0",
+    "wpapi": "^1.1.1"
   }
 }
