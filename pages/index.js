@@ -5,6 +5,7 @@ import AnimatedBg from '../components/animated-bg'
 import { blue, black } from '../config/colors'
 import Typist from 'react-typist'
 import classNames from 'classnames'
+import GlobalStyles from '../components/global-styles'
 
 export default class extends React.Component {
   constructor (props) {
@@ -30,10 +31,11 @@ export default class extends React.Component {
 
     return (
       <div>
+        <SiteHead title='Joonas Salovaara' />
+        <GlobalStyles />
         <AnimatedBg showDescription={showDescription} />
+        
         <div className='wrap'>
-          <SiteHead title='Joonas Salovaara' />
-
           <h1 onClick={e => {
             e.target.setAttribute('contenteditable', true)
             e.target.focus()
@@ -53,35 +55,12 @@ export default class extends React.Component {
           </h1>
 
           <div className={descriptionClass}>
-            <p>I'm a Digital Developer at <a href='https://bond-agency.com/'>Bond Helsinki</a> and a Computer Science student at University of Turku. I like solving problems & meeting new people. Currently I'm helping to organize <a href='https://twitter.com/helsinkijs'>HelsinkiJS</a> & <a href='https://twitter.com/reacthelsinki'>React Helsinki</a>.</p>
+            <p>I'm a Web Developer at <a href='https://bond-agency.com/'>Bond Helsinki</a> and a Computer Science student at University of Turku. I like solving problems & meeting new people. Currently I'm helping to organize <a href='https://twitter.com/helsinkijs'>HelsinkiJS</a> & <a href='https://twitter.com/reacthelsinki'>React Helsinki</a>.</p>
 
             <p>You can contact me via <a href='mailto:joonas.salovaara@gmail.com'>Email</a>, <a href='https://twitter.com/sarukuku'>Twitter</a> or <a href='tel:+358456301896'>Phone</a>. If you want to find out more about me you can read my <Link prefetch href='/blog'><a>blog</a></Link> or check out my <a href='https://github.com/sarukuku'>GitHub</a> profile and <a href='www.linkedin.com/in/joonas-salovaara'>LinkedIn</a> page.</p>
           </div>
 
-          <style jsx global>{`
-            /* Define the "system" font family */
-            @font-face {
-              font-family: system;
-              font-style: normal;
-              font-weight: 300;
-              src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
-            }
-
-            /* Now, let's apply it on an element */
-            body {
-              font-family: "system";
-              color: ${black}; 
-            }
-
-            a {
-              color: ${blue};
-              transition: all .2s;
-            }
-
-            a:hover {
-              color: ${black}
-            }
-
+          <style jsx>{`
             .wrap {
               max-width: 420px;
               z-index: 10;
