@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import SiteHead from '../components/site-head'
+import HomeLink from '../components/home-link'
+import BlogLink from '../components/blog-link'
 import GlobalStyles from '../components/global-styles'
 
 var WPAPI = require('wpapi')
@@ -21,18 +23,28 @@ export default class extends React.Component {
   render () {
     let { post } = this.props
 
+    console.log(post)
+
     return (
       <div className='Blog'>
-        <SiteHead title={post.title.rendered} />
         <GlobalStyles />
+        <HomeLink /> or <BlogLink />
 
-        <Link prefetch href='/'><a>Go Back Home</a></Link> or
-        <Link prefetch href='/blog'><a> Go Back to Blog</a></Link>
-        <section dangerouslySetInnerHTML={{__html: post.content.rendered}} />
-
+        {post &&
+          <div>
+            <SiteHead title={post.title.rendered} />
+            <div className='wrap'>
+              <h1 dangerouslySetInnerHTML={{__html: post.title.rendered}} />
+              <section dangerouslySetInnerHTML={{__html: post.content.rendered}} />
+            </div>
+            
+          </div>
+        }
+        {!post &&
+          <p>The post couldn't be loaded, sorry!</p>
+        }
         <style jsx>{`
-          section,
-          section :global(*) {
+          .wrap {
             max-width: 700px;
             margin: 0 auto;
           }

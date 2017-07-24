@@ -4,9 +4,9 @@
   "description": "My personal website & blog.",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build && next export",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "author": "Joonas Salovaara",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "isomorphic-fetch": "^2.2.1",
     "next": "beta",
     "particles.js": "^2.0.0",
+    "path-match": "^1.2.4",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
