@@ -22,7 +22,7 @@ export default () => (
 
     a {
       color: ${blue};
-      transition: all .2s;
+      transition: all .3s;
     }
 
     a:hover {

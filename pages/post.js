@@ -5,7 +5,7 @@ import HomeLink from '../components/home-link'
 import BlogLink from '../components/blog-link'
 import GlobalStyles from '../components/global-styles'
 import { getDate, decodeHtmlEntity, isBrowser } from '../helpers'
-import { darkgray, lightgray } from '../config/colors'
+import { darkgray, lightgray, black } from '../config/colors'
 
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: 'https://api.jsalovaara.com/wp-json' })
@@ -24,10 +24,21 @@ export default class extends React.Component {
   }
 
   componentDidMount() {
+    // Make iframe embeds fluid
     isBrowser && fluidvids.init({
       selector: ['iframe', 'object'], // runs querySelectorAll()
       players: ['www.youtube.com', 'player.vimeo.com', 'dotsub.com'] // players to support
     });
+
+    // Hide the ToTopBtn on short pages
+    if (isBrowser && window.document.body.clientHeight > window.innerHeight) {
+      this.toTopBtn.classList.remove('hidden')
+    }
+  }
+
+  onToTopBtnClick = e => {
+    e.preventDefault()
+    window.scrollTo(0, 0)
   }
 
   render () {
@@ -53,7 +64,11 @@ export default class extends React.Component {
               </ul>
               <section className='PostContent' dangerouslySetInnerHTML={{__html: post.content.rendered}} />
             </div>
-            
+            <a
+              href="#"
+              onClick={this.onToTopBtnClick}
+              ref={(toTopBtn) => { this.toTopBtn = toTopBtn; }}
+              className='ToTopBtn hidden'>Jump to top</a>
           </div>
         }
         {!post &&
@@ -91,6 +106,20 @@ export default class extends React.Component {
             color: ${darkgray};
             list-style: none;
             padding-left: 0;
+          }
+
+          .ToTopBtn {
+            display: block;
+            text-align: center;
+            font-weight: bold;
+            color: ${black};
+            background: ${lightgray};
+            text-decoration: none;
+            padding: 1rem;
+          }
+
+          .hidden {
+            display: none !important;
           }
 
           @media only screen and (min-width: 700px) {
