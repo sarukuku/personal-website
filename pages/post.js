@@ -4,11 +4,12 @@ import SiteHead from '../components/site-head'
 import HomeLink from '../components/home-link'
 import BlogLink from '../components/blog-link'
 import GlobalStyles from '../components/global-styles'
-import { getDate, decodeHtmlEntity } from '../helpers'
-import { darkgray } from '../config/colors'
+import { getDate, decodeHtmlEntity, isBrowser } from '../helpers'
+import { darkgray, lightgray } from '../config/colors'
 
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: 'https://api.jsalovaara.com/wp-json' })
+const fluidvids = require('fluidvids.js')
 
 export default class extends React.Component {
   static async getInitialProps ({query}) {
@@ -22,6 +23,13 @@ export default class extends React.Component {
     return { post: post }
   }
 
+  componentDidMount() {
+    isBrowser && fluidvids.init({
+      selector: ['iframe', 'object'], // runs querySelectorAll()
+      players: ['www.youtube.com', 'player.vimeo.com', 'dotsub.com'] // players to support
+    });
+  }
+
   render () {
     const { post } = this.props
     console.log(post)
@@ -29,7 +37,10 @@ export default class extends React.Component {
     return (
       <div className='Blog'>
         <GlobalStyles />
-        <HomeLink /> or <BlogLink />
+
+        <div className='wrap'>
+          <HomeLink /> or <BlogLink />
+        </div>
 
         {post &&
           <div>
@@ -40,7 +51,7 @@ export default class extends React.Component {
                 <li>Published {getDate(post.date)}</li>
                 <li>Last updated {getDate(post.modified)}</li>
               </ul>
-              <section dangerouslySetInnerHTML={{__html: post.content.rendered}} />
+              <section className='PostContent' dangerouslySetInnerHTML={{__html: post.content.rendered}} />
             </div>
             
           </div>
@@ -54,6 +65,27 @@ export default class extends React.Component {
             margin: 0 auto;
           }
 
+          .PostContent :global(*) {
+            max-width: 100%;
+          }
+
+          .PostContent :global(img) {
+            height: auto;
+            margin: 0 auto;
+          }
+
+          .PostContent :global(ul),
+          .PostContent :global(ol) {
+            padding-left: 2rem;
+          }
+
+          .PostContent :global(pre),
+          .PostContent :global(code) {
+            padding: 1rem;
+            background-color: ${lightgray};
+            overflow-x: auto;
+          }
+
           .PostMeta {
             font-size: 0.8rem;
             color: ${darkgray};
@@ -64,6 +96,11 @@ export default class extends React.Component {
           @media only screen and (min-width: 700px) {
             .PostMeta {
               font-size: 1.2rem;
+            }
+
+            .PostContent :global(ul),
+            .PostContent :global(ol) {
+              padding-left: 3rem;
             }
           }
         `}</style>

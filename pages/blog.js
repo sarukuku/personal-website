@@ -4,6 +4,7 @@ import SiteHead from '../components/site-head'
 import GlobalStyles from '../components/global-styles'
 import HomeLink from '../components/home-link'
 import { isBrowser, getDate } from '../helpers'
+import { lightgray } from '../config/colors'
 
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: 'https://api.jsalovaara.com/wp-json' })
@@ -33,7 +34,7 @@ export default class extends React.Component {
           {posts && posts.map(post => {
             return (
               <li key={post.id}>
-                <span>{getDate(post.date)}</span>
+                <span className='PostDate'>{getDate(post.date)}</span>
                 <Link
                   key={post.id}
                   href={{pathname: 'post', query: { id: post.id }}}
@@ -57,11 +58,28 @@ export default class extends React.Component {
         }
         <style jsx>{`
           ul {
-            padding-left: 2rem;
+            padding-left: 0;
+            list-style: none;
           }
 
           li {
             margin-bottom: 0.5rem;
+            display: flex;
+            padding: .5rem;
+          }
+
+          @media only screen and (min-width: 700px) {
+            li {
+              padding: 1rem;
+            }
+          }
+
+          li:nth-child(even) {
+            background: ${lightgray};
+          }
+
+          .PostDate {
+            margin-right: 1rem;
           }
         `}</style>
       </div>

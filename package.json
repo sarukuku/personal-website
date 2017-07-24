@@ -13,6 +13,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "es6-promise": "^4.1.1",
+    "fluidvids.js": "toddmotto/fluidvids",
     "isomorphic-fetch": "^2.2.1",
     "next": "beta",
     "particles.js": "^2.0.0",

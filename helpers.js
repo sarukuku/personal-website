@@ -8,7 +8,19 @@ export const isServer = () => {
 
 export const getDate = (dateString) => {
   const dateObj = new Date(Date.parse(dateString))
-  return `${dateObj.getDate()}.${dateObj.getMonth()+1}.${dateObj.getFullYear()}`
+  let day = dateObj.getDate()
+  let month = dateObj.getMonth()+1
+  const year = dateObj.getFullYear()
+
+  if (day.toString().length < 2) {
+    day = `0${day}`
+  }
+
+  if (month.toString().length < 2) {
+    month = `0${month}`
+  }
+
+  return `${day}.${month}.${year}`
 }
 
 // encode(decode) html text into html entity
