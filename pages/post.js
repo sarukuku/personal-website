@@ -4,9 +4,11 @@ import SiteHead from '../components/site-head'
 import HomeLink from '../components/home-link'
 import BlogLink from '../components/blog-link'
 import GlobalStyles from '../components/global-styles'
+import { getDate, decodeHtmlEntity } from '../helpers'
+import { darkgray } from '../config/colors'
 
-var WPAPI = require('wpapi')
-var wp = new WPAPI({ endpoint: 'https://api.jsalovaara.com/wp-json' })
+const WPAPI = require('wpapi')
+const wp = new WPAPI({ endpoint: 'https://api.jsalovaara.com/wp-json' })
 
 export default class extends React.Component {
   static async getInitialProps ({query}) {
@@ -21,8 +23,7 @@ export default class extends React.Component {
   }
 
   render () {
-    let { post } = this.props
-
+    const { post } = this.props
     console.log(post)
 
     return (
@@ -32,9 +33,13 @@ export default class extends React.Component {
 
         {post &&
           <div>
-            <SiteHead title={post.title.rendered} />
+            <SiteHead title={decodeHtmlEntity(post.title.rendered)} />
             <div className='wrap'>
               <h1 dangerouslySetInnerHTML={{__html: post.title.rendered}} />
+              <ul className='PostMeta'>
+                <li>Published {getDate(post.date)}</li>
+                <li>Last updated {getDate(post.modified)}</li>
+              </ul>
               <section dangerouslySetInnerHTML={{__html: post.content.rendered}} />
             </div>
             
@@ -47,6 +52,19 @@ export default class extends React.Component {
           .wrap {
             max-width: 700px;
             margin: 0 auto;
+          }
+
+          .PostMeta {
+            font-size: 0.8rem;
+            color: ${darkgray};
+            list-style: none;
+            padding-left: 0;
+          }
+
+          @media only screen and (min-width: 700px) {
+            .PostMeta {
+              font-size: 1.2rem;
+            }
           }
         `}</style>
       </div>

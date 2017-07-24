@@ -3,7 +3,7 @@ import Link from 'next/link'
 import SiteHead from '../components/site-head'
 import GlobalStyles from '../components/global-styles'
 import HomeLink from '../components/home-link'
-import { isBrowser } from '../helpers'
+import { isBrowser, getDate } from '../helpers'
 
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: 'https://api.jsalovaara.com/wp-json' })
@@ -33,6 +33,7 @@ export default class extends React.Component {
           {posts && posts.map(post => {
             return (
               <li key={post.id}>
+                <span>{getDate(post.date)}</span>
                 <Link
                   key={post.id}
                   href={{pathname: 'post', query: { id: post.id }}}
