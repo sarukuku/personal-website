@@ -15,7 +15,7 @@
     "es6-promise": "^4.1.1",
     "fluidvids.js": "toddmotto/fluidvids",
     "isomorphic-fetch": "^2.2.1",
-    "next": "beta",
+    "next": "latest",
     "particles.js": "^2.0.0",
     "path-match": "^1.2.4",
     "prop-types": "^15.5.10",

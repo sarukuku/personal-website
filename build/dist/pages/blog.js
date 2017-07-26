@@ -102,7 +102,7 @@ var _class = function (_React$Component) {
         'data-jsx': 2712218143
       }, ' Your network seems OK to me. The problem is probably at my end.')), _react2.default.createElement(_style2.default, {
         styleId: 2712218143,
-        css: 'ul[data-jsx="2712218143"]{padding-left:0;list-style:none}li[data-jsx="2712218143"]{margin-bottom:0.5rem;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;padding:.5rem}a[data-new="true"][data-jsx="2712218143"]:before{content:\'New\';text-transfomr:uppercase;font-weight:bold;color:' + _colors.black + ';display:inline-block;margin-right:1rem;background:' + _colors.yellow + ';padding:2px 4px}@media only screen and (min-width:700px){li[data-jsx="2712218143"]{padding:1rem}}li[data-jsx="2712218143"]:nth-child(odd){background:' + _colors.lightgray + '}.PostDate[data-jsx="2712218143"]{margin-right:1rem}'
+        css: 'ul[data-jsx="2712218143"]{padding-left:0;list-style:none}li[data-jsx="2712218143"]{margin-bottom:0.5rem;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;padding:.5rem}a[data-new="true"][data-jsx="2712218143"]:before{content:\'New\';-webkit-text-transfomr:uppercase;text-transfomr:uppercase;font-weight:bold;color:' + _colors.black + ';display:inline-block;margin-right:1rem;background:' + _colors.yellow + ';padding:2px 4px}@media only screen and (min-width:700px){li[data-jsx="2712218143"]{padding:1rem}}li[data-jsx="2712218143"]:nth-child(odd){background:' + _colors.lightgray + '}.PostDate[data-jsx="2712218143"]{margin-right:1rem}'
       }));
     }
   }], [{
