@@ -33,7 +33,7 @@ export default class extends React.Component {
         <ul>
           {posts && posts.map(post => {
             const postIsNew = isPostNew(post)
-            const postIsUnread = isPostUnread(post)
+            const postIsUnread = isBrowser() && isPostUnread(post)
 
             return (
               <li key={post.id}>
