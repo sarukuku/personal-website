@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "pleskbuild": "npm run build --scripts-prepend-node-path",
     "start": "NODE_ENV=production node server.js"
   },
   "author": "Joonas Salovaara",
