@@ -4,7 +4,7 @@ import SiteHead from '../components/site-head'
 import HomeLink from '../components/home-link'
 import BlogLink from '../components/blog-link'
 import GlobalStyles from '../components/global-styles'
-import { getDate, decodeHtmlEntity, isBrowser } from '../helpers'
+import { getDate, decodeHtmlEntity, isBrowser, markPostAsRead } from '../helpers'
 import { darkgray, lightgray, black } from '../config/colors'
 
 const WPAPI = require('wpapi')
@@ -25,14 +25,19 @@ export default class extends React.Component {
 
   componentDidMount() {
     // Make iframe embeds fluid
-    isBrowser && fluidvids.init({
+    isBrowser() && fluidvids.init({
       selector: ['iframe', 'object'], // runs querySelectorAll()
       players: ['www.youtube.com', 'player.vimeo.com', 'dotsub.com'] // players to support
     });
 
     // Hide the ToTopBtn on short pages
-    if (isBrowser && window.document.body.clientHeight > window.innerHeight) {
+    if (isBrowser() && window.document.body.clientHeight > window.innerHeight) {
       this.toTopBtn.classList.remove('hidden')
+    }
+
+    // Mark post as read on client side.
+    if (isBrowser()) {
+      markPostAsRead(this.props.post)
     }
   }
 

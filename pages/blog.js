@@ -3,8 +3,8 @@ import Link from 'next/link'
 import SiteHead from '../components/site-head'
 import GlobalStyles from '../components/global-styles'
 import HomeLink from '../components/home-link'
-import { isBrowser, getDate, isPostNew } from '../helpers'
-import { lightgray, yellow, black } from '../config/colors'
+import { isBrowser, getDate, isPostNew, isPostUnread } from '../helpers'
+import { lightgray, yellow, black, blue } from '../config/colors'
 
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: 'https://api.jsalovaara.com/wp-json' })
@@ -33,6 +33,7 @@ export default class extends React.Component {
         <ul>
           {posts && posts.map(post => {
             const postIsNew = isPostNew(post)
+            const postIsUnread = isPostUnread(post)
 
             return (
               <li key={post.id}>
@@ -41,7 +42,7 @@ export default class extends React.Component {
                   key={post.id}
                   href={{pathname: 'post', query: { id: post.id }}}
                   as={{pathname: `post/${post.id}/${post.slug}`}}>
-                  <a data-new={postIsNew} dangerouslySetInnerHTML={{__html: post.title.rendered}} />
+                  <a data-new={postIsNew} data-unread={postIsUnread} dangerouslySetInnerHTML={{__html: post.title.rendered}} />
                 </Link>
               </li>
             )
@@ -79,6 +80,16 @@ export default class extends React.Component {
             margin-right: 1rem;
             background: ${yellow};
             padding: 2px 4px;
+          }
+
+          a[data-unread="true"]:before {
+            content: ' '
+            display: inline-block;
+            margin-right: 1rem;
+            background: ${blue};
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 0.5rem;
           }
 
           @media only screen and (min-width: 700px) {

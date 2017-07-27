@@ -1,3 +1,5 @@
+const Cookies = require('cookies-js')
+
 export const isBrowser = () => {
   return (typeof window !== 'undefined')
 }
@@ -46,6 +48,27 @@ export const isPostNew = (post) => {
   const differenceInDays = Math.round(Math.abs((now.getTime() - postDate.getTime())/(oneDay)))
 
   if (differenceInDays > 30) {
+    return false
+  }
+
+  return true
+}
+
+export const markPostAsRead = (post) => {
+  let readPosts = (Cookies.get('readPosts')) ? JSON.parse(Cookies.get('readPosts')) : []
+
+  if (!readPosts.indexOf(post.id) > -1) {
+    readPosts.push(post.id)
+    Cookies.set('readPosts', JSON.stringify(readPosts))
+  }
+}
+
+// Checks if the post has already been opened by the user in the past.
+export const isPostUnread = (post) => {
+  // Get the read posts array.
+  const readPosts = (Cookies.get('readPosts')) ? JSON.parse(Cookies.get('readPosts')) : []
+
+  if (readPosts.indexOf(post.id) > -1) {
     return false
   }
 

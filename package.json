@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.2.5",
+    "cookies-js": "^1.2.3",
     "es6-promise": "^4.1.1",
     "fluidvids.js": "toddmotto/fluidvids",
     "isomorphic-fetch": "^2.2.1",
