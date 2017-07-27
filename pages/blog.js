@@ -4,7 +4,7 @@ import SiteHead from '../components/site-head'
 import GlobalStyles from '../components/global-styles'
 import HomeLink from '../components/home-link'
 import { isBrowser, getDate, isPostNew, isPostUnread } from '../helpers'
-import { lightgray, yellow, black, blue } from '../config/colors'
+import { lightgray, yellow, black, blue, white } from '../config/colors'
 
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: 'https://api.jsalovaara.com/wp-json' })
@@ -42,8 +42,11 @@ export default class extends React.Component {
                   key={post.id}
                   href={{pathname: 'post', query: { id: post.id }}}
                   as={{pathname: `post/${post.id}/${post.slug}`}}>
-                  <a data-new={postIsNew} data-unread={postIsUnread} dangerouslySetInnerHTML={{__html: post.title.rendered}} />
+                  <a data-new={postIsNew} dangerouslySetInnerHTML={{__html: post.title.rendered}} />
                 </Link>
+                {postIsUnread &&
+                  <span className='UnreadIndicator' />
+                }
               </li>
             )
           })}
@@ -66,6 +69,7 @@ export default class extends React.Component {
           }
 
           li {
+            position: relative;
             margin-bottom: 0.5rem;
             display: flex;
             padding: .5rem;
@@ -82,14 +86,35 @@ export default class extends React.Component {
             padding: 2px 4px;
           }
 
-          a[data-unread="true"]:before {
-            content: ' '
+          .UnreadIndicator {
             display: inline-block;
-            margin-right: 1rem;
             background: ${blue};
             width: 0.5rem;
             height: 0.5rem;
             border-radius: 0.5rem;
+            position: absolute;
+            right: -0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+
+          .UnreadIndicator:before {
+            content: 'Unread';
+            display: inline-block;
+            background: ${blue};
+            color: ${white};
+            padding: 2px 4px;
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity .2s ease-in-out;
+            pointer-events: none;
+          }
+
+          .UnreadIndicator:hover:before {
+            opacity: 1;
           }
 
           @media only screen and (min-width: 700px) {
