@@ -5,7 +5,7 @@ export default () => (
     body {
       font-family: monospace;
       color: ${black};
-      font-size: 1rem;
+      font-size: 1.2rem;
       margin: 1rem;
     }
 

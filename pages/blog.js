@@ -30,7 +30,7 @@ export default class extends React.Component {
         <HomeLink />
         
         <h1>Blog Posts</h1>
-        <ul>
+        <ul className='Posts'>
           {posts && posts.map(post => {
             const postIsNew = isPostNew(post)
             const postIsUnread = isBrowser() && isPostUnread(post)
@@ -63,16 +63,21 @@ export default class extends React.Component {
           </p>
         }
         <style jsx>{`
-          ul {
+          .Posts {
             padding-left: 0;
             list-style: none;
           }
 
-          li {
+          .Posts li {
             position: relative;
             margin-bottom: 0.5rem;
             display: flex;
+            flex-wrap: wrap;
             padding: .5rem;
+          }
+
+          .Posts li a {
+            font-weight: bold;
           }
 
           a[data-new="true"]:before {
@@ -81,7 +86,7 @@ export default class extends React.Component {
             font-weight: bold;
             color: ${black};
             display: inline-block;
-            margin-right: 1rem;
+            margin-right: .5rem;
             background: ${yellow};
             padding: 2px 4px;
           }
@@ -91,10 +96,10 @@ export default class extends React.Component {
             background: ${blue};
             width: 0.5rem;
             height: 0.5rem;
-            border-radius: 0.5rem;
+            border-radius: 100%;
             position: absolute;
-            right: -0.75rem;
-            top: 50%;
+            left: 12ch;
+            top: 1.05rem;
             transform: translateY(-50%);
           }
 
@@ -105,7 +110,7 @@ export default class extends React.Component {
             color: ${white};
             padding: 2px 4px;
             position: absolute;
-            right: 0.75rem;
+            left: 0.75rem;
             top: 50%;
             transform: translateY(-50%);
             opacity: 0;
@@ -117,18 +122,37 @@ export default class extends React.Component {
             opacity: 1;
           }
 
-          @media only screen and (min-width: 700px) {
-            li {
-              padding: 1rem;
-            }
-          }
-
-          li:nth-child(odd) {
+          .Posts li:nth-child(odd) {
             background: ${lightgray};
           }
 
           .PostDate {
-            margin-right: 1rem;
+            width: 100%;
+            margin-bottom: 0.2rem;
+          }
+
+          @media only screen and (min-width: 700px) {
+            .Posts li {
+              padding: 1rem;
+              flex-wrap: nowrap;
+            }
+
+            .PostDate {
+              width: auto;
+              margin-right: 1rem;
+              margin-left: 1rem;
+            }
+
+            .UnreadIndicator {
+              top: 48%;
+              left: 0.5rem;
+              width: 1rem;
+              height: 1rem;
+            }
+
+            .UnreadIndicator:before {
+              left: 1.25rem;
+            }
           }
         `}</style>
       </div>

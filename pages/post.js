@@ -105,6 +105,10 @@ export default class extends React.Component {
             overflow-x: auto;
           }
 
+          .PostContent :global(a) {
+            word-wrap: break-word;
+          }
+
           .PostMeta {
             font-size: 0.8rem;
             color: ${darkgray};
