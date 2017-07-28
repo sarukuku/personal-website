@@ -3,7 +3,7 @@ import Link from 'next/link'
 import SiteHead from '../components/site-head'
 import GlobalStyles from '../components/global-styles'
 import HomeLink from '../components/home-link'
-import { isBrowser, getDate, isPostNew, isPostUnread } from '../helpers'
+import { isBrowser, getDate, isPostNew, isPostUnread, markAllPostsRead } from '../helpers'
 import { lightgray, yellow, black, blue, white } from '../config/colors'
 
 const WPAPI = require('wpapi')
@@ -61,6 +61,12 @@ export default class extends React.Component {
               <span> Your network seems OK to me. The problem is probably at my end.</span>
             }
           </p>
+        }
+        {posts &&
+          <button onClick={e => {
+            markAllPostsRead(posts)
+            this.forceUpdate()
+          }}>Mark all posts as read</button>
         }
         <style jsx>{`
           .Posts {
@@ -129,6 +135,27 @@ export default class extends React.Component {
           .PostDate {
             width: 100%;
             margin-bottom: 0.2rem;
+          }
+
+          button {
+            font-family: inherit;
+            font-size: inherit;
+            border: 1px dashed black;
+            padding: 0.5rem;
+            border-radius: 0;
+            transition: all .1s;
+          }
+
+          button:hover {
+            border-style: solid;
+          }
+
+          button:active {
+            transform: scale(0.95);
+          }
+
+          button:focus {
+            border-style: solid;
           }
 
           @media only screen and (min-width: 700px) {

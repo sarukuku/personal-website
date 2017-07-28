@@ -63,6 +63,16 @@ export const markPostAsRead = (post) => {
   }
 }
 
+export const markAllPostsRead = (posts) => {
+  let readPosts = []
+
+  posts.forEach(post => {
+   readPosts.push(post.id) 
+  });
+
+  Cookies.set('readPosts', JSON.stringify(readPosts))
+}
+
 // Checks if the post has already been opened by the user in the past.
 export const isPostUnread = (post) => {
   // Get the read posts array.
