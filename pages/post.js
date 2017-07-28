@@ -103,6 +103,7 @@ export default class extends React.Component {
             padding: 1rem;
             background-color: ${lightgray};
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
           }
 
           .PostContent :global(a) {
