@@ -12,7 +12,7 @@ export const isServer = () => {
 export const getDate = (dateString) => {
   const dateObj = new Date(Date.parse(dateString))
   let day = dateObj.getDate()
-  let month = dateObj.getMonth()+1
+  let month = dateObj.getMonth() + 1
   const year = dateObj.getFullYear()
 
   if (day.toString().length < 2) {
@@ -28,7 +28,7 @@ export const getDate = (dateString) => {
 
 // Encode (=decode) html text into html entity.
 export const decodeHtmlEntity = (str) => {
-  return str.replace(/&#(\d+);/g, function(match, dec) {
+  return str.replace(/&#(\d+);/g, function (match, dec) {
     return String.fromCharCode(dec)
   })
 }
@@ -36,7 +36,7 @@ export const decodeHtmlEntity = (str) => {
 // Decides whether the passed post is new on not.
 export const isPostNew = (post) => {
   // One day in ms
-  var oneDay = 24*60*60*1000;
+  var oneDay = 24 * 60 * 60 * 1000
 
   // Current date
   const now = new Date()
@@ -45,7 +45,7 @@ export const isPostNew = (post) => {
   const postDate = new Date(Date.parse(post.date))
 
   // Calculate difference
-  const differenceInDays = Math.round(Math.abs((now.getTime() - postDate.getTime())/(oneDay)))
+  const differenceInDays = Math.round(Math.abs((now.getTime() - postDate.getTime()) / (oneDay)))
 
   if (differenceInDays > 30) {
     return false
@@ -59,7 +59,7 @@ export const markPostAsRead = (post) => {
 
   if (!readPosts.indexOf(post.id) > -1) {
     readPosts.push(post.id)
-    Cookies.set('readPosts', JSON.stringify(readPosts))
+    Cookies.set('readPosts', JSON.stringify(readPosts), { expires: Infinity })
   }
 }
 
@@ -67,10 +67,10 @@ export const markAllPostsRead = (posts) => {
   let readPosts = []
 
   posts.forEach(post => {
-   readPosts.push(post.id) 
-  });
+    readPosts.push(post.id)
+  })
 
-  Cookies.set('readPosts', JSON.stringify(readPosts))
+  Cookies.set('readPosts', JSON.stringify(readPosts), { expires: Infinity })
 }
 
 // Checks if the post has already been opened by the user in the past.
