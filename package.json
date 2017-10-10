@@ -16,13 +16,13 @@
     "es6-promise": "^4.1.1",
     "fluidvids.js": "toddmotto/fluidvids",
     "isomorphic-fetch": "^2.2.1",
-    "next": "latest",
+    "next": "^4.0.1",
     "nprogress": "^0.2.0",
     "particles.js": "^2.0.0",
     "path-match": "^1.2.4",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-typist": "^1.1.1",
     "wpapi": "^1.1.2"
   }
