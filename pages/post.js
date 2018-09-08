@@ -54,7 +54,7 @@ export default class extends React.Component {
         <GlobalStyles />
 
         <div className='wrap'>
-          <HomeLink /> or <BlogLink />
+          <HomeLink /> or <BlogLink text='see all posts' />
         </div>
 
         {post &&
