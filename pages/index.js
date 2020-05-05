@@ -56,7 +56,7 @@ export default class extends React.Component {
           </h1>
 
           <div className={descriptionClass}>
-            <p>I'm a Senior Software Developer at <a href='https://reaktor.com/'>Reaktor</a> and a Computer Science graduate. I like solving problems and meeting new people. Currently I'm helping to organize <a href='https://twitter.com/helsinkijs'>HelsinkiJS</a>, <a href='https://twitter.com/reacthelsinki'>React Helsinki</a> &amp; <a href='https://twitter.com/amsterdamjs'>AmsterdamJS</a>.</p>
+            <p>I'm a Principal Consultant at <a href='https://reaktor.com/'>Reaktor</a> and a Computer Science graduate. I like solving problems and meeting new people. Currently I'm helping to organize <a href='https://twitter.com/helsinkijs'>HelsinkiJS</a>, <a href='https://twitter.com/reacthelsinki'>React Helsinki</a> &amp; <a href='https://twitter.com/amsterdamjs'>AmsterdamJS</a>.</p>
 
             <p>You can contact me via <a href='mailto:joonas.salovaara@gmail.com'>email</a>, <a href='https://twitter.com/sarukuku'>Twitter</a> or <a href='tel:+31624898644'>phone</a>. If you want to find out more about me you can <BlogLink text='read my blog' /> or check out my <a href='https://github.com/sarukuku'>GitHub</a> profile and <a href='https://www.linkedin.com/in/joonas-salovaara'>LinkedIn</a> page.</p>
           </div>
