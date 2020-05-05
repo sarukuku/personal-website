@@ -4,7 +4,7 @@ if (typeof window !== 'undefined') { require('particles.js') }
 
 export default class extends React.Component {
   componentDidMount () {
-    window.particlesJS.load('particles-js', 'static/particles.json', () => {
+    window.particlesJS.load('particles-js', '/particles.json', () => {
       //console.log('callback - particles.js config loaded')
     })
   }

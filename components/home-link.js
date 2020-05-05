@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default () => (
   <span>
-    <Link prefetch href='/'><a className='HomeLink'>Go home</a></Link>
+    <Link href='/'><a className='HomeLink'>Go home</a></Link>
     <style jsx global>{`
       .HomeLink:after {
         display: inline-block;
